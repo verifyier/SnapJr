@@ -2,7 +2,8 @@
 
     threads.js
 
-    a tail call optimized blocks-based programming language interpreter
+    a tail call optimized blocks-
+    based programming language interpreter
     based on morphic.js and blocks.js
     inspired by Scratch, Scheme and Squeak
 
@@ -1004,6 +1005,38 @@ Process.prototype.doReport = function (block) {
     this.context.isCustomCommand = block.partOfCustomCommand;
 };
 
+//---------------------------
+    Process.prototype.Report = function(val){
+        var outer = this.context.outer
+         while (this.context && this.context.tag !== 'exit') {
+            if (this.context.expression === 'doStopWarping') {
+                this.doStopWarping();
+            } else {
+                this.popContext();
+            }
+        }
+        if (this.context) {
+            if (this.context.expression === 'expectReport') {
+                // pop off inserted top-level exit context
+                this.popContext();
+            } else {
+                // un-tag and preserve original caller
+                this.context.tag = null;
+            }
+        }
+        var ret_Val = new InputSlotMorph
+        ret_Val.evaluate = function(){return val}
+        this.pushContext(ret_Val,outer)
+    }
+//---------------------------
+Process.prototype.JSRun = function(js){
+    var val = Function(js).call(this)
+    if(val !== undfined){
+        this.Report(val);
+        return val;
+    }
+}
+    
 // Process: Non-Block evaluation
 
 Process.prototype.evaluateMultiSlot = function (multiSlot, argCount) {
