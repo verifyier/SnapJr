@@ -896,6 +896,11 @@ SpriteMorph.prototype.initBlocks = function () {
             category: 'control',
             spec: 'this.doYield();'
         },
+        JSRun: {
+            type: 'command',
+            category: 'control',
+            spec: '%codes'
+        },
         
 
         // Message passing
@@ -2833,6 +2838,7 @@ SpriteMorph.prototype.blockTemplates = function (
         // deprecated - superseded by reportEnviornment - retained for legacy
             blocks.push('-');
             blocks.push(block('doYield'));
+            blocks.push(block('JSRun'));
         }
 
     } else if (category === '👁👂') {
