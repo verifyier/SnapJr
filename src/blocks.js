@@ -885,6 +885,10 @@ SyntaxElementMorph.prototype.labelParts = {
         type: 'text entry',
         tags: 'monospace'
     },
+    '%codes': {
+        type: 'text entry',
+        tags: 'monospace static'
+    },
 
     /*
         type: 'boolean'
@@ -1286,7 +1290,7 @@ SyntaxElementMorph.prototype.labelParts = {
         dflt: ['key','value'],
         infix: ',',
         tags: 'static widget'
-    }
+    }- =n m
 };
 
 // SyntaxElementMorph instance creation:
