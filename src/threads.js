@@ -988,15 +988,15 @@ Process.prototype.doReport = function (block) {
                 this.popContext();
             }
         }
-        if (this.context) {
-            if (this.context.expression === 'expectReport') {
+        if (this.context) 
+            if (this.context.expression === 'expectReport') 
                 // pop off inserted top-level exit context
                 this.popContext();
-            } else {
+             else 
                 // un-tag and preserve original caller
                 this.context.tag = null;
-            }
-        }
+            
+        
     }
     // in any case evaluate (and ignore)
     // the input, because it could be
@@ -1008,22 +1008,19 @@ Process.prototype.doReport = function (block) {
 //---------------------------
     Process.prototype.Report = function(val){
         var outer = this.context.outer
-         while (this.context && this.context.tag !== 'exit') {
-            if (this.context.expression === 'doStopWarping') {
+         while (this.context && this.context.tag !== 'exit') 
+            if (this.context.expression === 'doStopWarping') 
                 this.doStopWarping();
-            } else {
+             else 
                 this.popContext();
-            }
-        }
-        if (this.context) {
-            if (this.context.expression === 'expectReport') {
-                // pop off inserted top-level exit context
+            
+        
+        if (this.context) 
+            if (this.context.expression === 'expectReport') // pop off inserted top-level exit context
                 this.popContext();
-            } else {
-                // un-tag and preserve original caller
+             else // un-tag and preserve original caller
                 this.context.tag = null;
-            }
-        }
+            
         var ret_Val = new InputSlotMorph
         ret_Val.evaluate = function(){return val}
         this.pushContext(ret_Val,outer)
@@ -1031,7 +1028,7 @@ Process.prototype.doReport = function (block) {
 //---------------------------
 Process.prototype.JSRun = function(js){
     var val = Function(js).call(this)
-    if(val !== undfined){
+    if(val !== undefined){
         this.Report(val);
         return val;
     }
