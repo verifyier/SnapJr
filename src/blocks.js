@@ -885,7 +885,7 @@ SyntaxElementMorph.prototype.labelParts = {
         type: 'text entry',
         tags: 'monospace'
     },
-    '%codes': {
+	    '%codes': {
         type: 'text entry',
         tags: 'monospace static'
     },
@@ -1058,17 +1058,17 @@ SyntaxElementMorph.prototype.labelParts = {
     
     '%rcl': {
         type: 'ring slot',
-        tags: 'static lambda',
+        tags: 'lambda',
         kind: 'command'
     },
     '%rrl': {
         type: 'ring slot',
-        tags: 'static lambda',
+        tags: 'lambda',
         kind: 'reporter'
     },
     '%rpl': {
         type: 'ring slot',
-        tags: 'static lambda',
+        tags: 'lambda',
         kind: 'predicate'
     },
 
