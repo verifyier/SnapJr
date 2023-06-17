@@ -1027,7 +1027,7 @@ Process.prototype.doReport = function (block) {
     }
 //---------------------------
 Process.prototype.JSRun = function(js){
-    var val = Function(js).call(this)
+    var val = Function('get','set','add','myself',js).call(this,[((varname)=>this.context.variables.getVar(varname)),((varname,val)=>this.context.variables.setVar(varname,val)),((varname,val)=>this.context.variables.addVar(varname,val)),this.homeContext.receiver])
     if(val !== undefined){
         this.Report(val);
         return val;

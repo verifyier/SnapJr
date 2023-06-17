@@ -318,7 +318,7 @@ SyntaxElementMorph.prototype.labelParts = {
     '%s': {
         type: 'input'
     },
-    '%font':{type:'input'},'%style':{type:'input',menu:{italic:'italic',bold:'bold',both:'italic bold'}},
+    '%font':{type:'input'},'%style':{type:'input',menu:{italic:'italic ',bold:'bold ',both:'italic bold '}},
     '%n': {
         type: 'input',
         tags: 'numeric'
@@ -885,7 +885,7 @@ SyntaxElementMorph.prototype.labelParts = {
         type: 'text entry',
         tags: 'monospace'
     },
-	    '%codes': {
+    '%codes': {
         type: 'text entry',
         tags: 'monospace static'
     },
@@ -1932,6 +1932,9 @@ SyntaxElementMorph.prototype.labelPart = function (spec) {
                             cnts.fixLayout();
                         }
                         break;
+                    case 'dev-editable':
+                        part.isDevEditable = true;
+                        break;
                     case 'unevaluated':
                         part.isUnevaluated = true;
                         break;
@@ -2924,7 +2927,7 @@ BlockMorph.uber = SyntaxElementMorph.prototype;
 // BlockMorph preferences settings:
 
 BlockMorph.prototype.isCachingInputs = true;
-BlockMorph.prototype.zebraContrast = 40; // alternating color brightness
+BlockMorph.prototype.zebraContrast = /*4*/0; // alternating color brightness
 
 // BlockMorph sound feedback:
 
@@ -2954,7 +2957,7 @@ BlockMorph.prototype.init = function () {
     // not to be persisted:
     this.instantiationSpec = null; // spec to set upon fullCopy() of template
     this.category = null; // for zebra coloring (non persistent)
-    this.isCorpse = false; // marked for deletion fom a custom block definition
+    this.isCorpse = false; // marked for deletion from a custom block definition
 
     BlockMorph.uber.init.call(this);
     this.color = new Color(102, 102, 102);
@@ -10967,9 +10970,11 @@ InputSlotMorph.prototype.eventsMenu = function (searching) {
 InputSlotMorph.prototype.primitivesMenu = function () {
     var dict = {},
         allNames = Array.from(SnapExtensions.primitives.keys());
-
-    allNames.sort().forEach(name =>
-        dict[name] = name
+    function toDict(map=new Map(),path=''){
+        return map.call((toSort)=> new Map([...toSort.keys()].sort().map((name)=>[name,(toSort.get(name) instanceof Map)?toDict(toSort.get(name),path+"/"+name):path+'/'+name])).toObject())
+    }
+    allNames.sort().forEach((name) =>
+        dict[name] = (typeof SnapExtensions.primitives.get(name) == 'function')?name:toDict(SnapExtensions.primitives.get(name),name)
     );
     return dict;
 };

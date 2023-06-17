@@ -870,7 +870,7 @@ SpriteMorph.prototype.initBlocks = function () {
         doReport: {
             type: 'command',
             category: '🔄',
-            spec: '%s $↩-2'
+            spec: '$loop-2 %s'
         },
         doCallCC: {
             // deprecated - superseded by reportEnviornment - kept for legacy

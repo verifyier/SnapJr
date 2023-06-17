@@ -1625,6 +1625,18 @@ function embedMetadataPNG(aCanvas, aString) {
     return parts.join(',');
 }
 
+Map.prototype.toObject = function(){
+    var out = Object(null);
+    for (var [k,v] of this) {
+        out[k]=v;
+    }
+    return out;
+}
+
+Map.porotoype.call = function(funct,...inputs){
+    return funct.call(this,[...inputs,this]);
+}
+
 
 // Retina Display Support //////////////////////////////////////////////
 
