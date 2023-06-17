@@ -1290,7 +1290,7 @@ SyntaxElementMorph.prototype.labelParts = {
         dflt: ['key','value'],
         infix: ',',
         tags: 'static widget'
-    }- =n m
+    }
 };
 
 // SyntaxElementMorph instance creation:
