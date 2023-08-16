@@ -6032,28 +6032,28 @@ SpriteMorph.prototype.applyGraphicsEffects = function (canvas) {
         ctx = canvas.getContext("2d");
         imagedata = ctx.getImageData(0, 0, w, h);
 
-        if (this.graphicsValues.fisheye) {
+        if (this.graphicsValues['🐠👁']) {
             imagedata = transform_fisheye(
                 imagedata,
-                this.graphicsValues.fisheye
+                this.graphicsValues['🐠👁']
             );
         }
-        if (this.graphicsValues.whirl) {
+        if (this.graphicsValues['🌀']) {
             imagedata = transform_whirl(
                 imagedata,
-                this.graphicsValues.whirl
+                this.graphicsValues['🌀']
             );
         }
-        if (this.graphicsValues.pixelate) {
+        if (this.graphicsValues['👾']) {
             imagedata = transform_pixelate(
                 imagedata,
-                this.graphicsValues.pixelate
+                this.graphicsValues['👾']
             );
         }
-        if (this.graphicsValues.mosaic) {
+        if (this.graphicsValues['👾🎨']) {
             imagedata = transform_mosaic(
                 imagedata,
-                this.graphicsValues.mosaic
+                this.graphicsValues['👾🎨']
             );
         }
         if (this.graphicsValues.duplicate) {
@@ -6062,26 +6062,27 @@ SpriteMorph.prototype.applyGraphicsEffects = function (canvas) {
                 this.graphicsValues.duplicate
             );
         }
-        if (this.graphicsValues.color ||
-                this.graphicsValues.saturation ||
-                this.graphicsValues.brightness) {
+        if (
+                this.graphicsValues['🌈']||
+                this.graphicsValues['🟥']||
+                this.graphicsValues['💡']) {
             imagedata = transform_colorDimensions(
                 imagedata,
-                this.graphicsValues.color,
-                this.graphicsValues.saturation,
-                this.graphicsValues.brightness
+                this.graphicsValues['🌈'],
+                this.graphicsValues['🟥'],
+                this.graphicsValues['💡']
             );
         }
-        if (this.graphicsValues.negative) {
+        if (this.graphicsValues['-']) {
             imagedata = transform_negative(
                 imagedata,
-                this.graphicsValues.negative
+                this.graphicsValues['-']
             );
         }
-        if (this.graphicsValues.comic) {
+        if (this.graphicsValues['📖']) {
             imagedata = transform_comic(
                 imagedata,
-                this.graphicsValues.comic
+                this.graphicsValues['📖']
             );
         }
         if (this.graphicsValues.confetti) {
@@ -6101,25 +6102,25 @@ SpriteMorph.prototype.setEffect = function (effect, value) {
     var eff = effect instanceof Array ? effect[0] : effect.toString();
     if (!contains(
             [
-                'color',
-                'saturation',
-                'brightness',
-                'ghost',
-                'fisheye',
-                'whirl',
-                'pixelate',
-                'mosaic',
-                'negative',
-                // depracated, but still supported in legacy projects:
+            '🌈',
+            '🟥',
+            '💡',
+            '👻',
+            '🐠👁',
+            '🌀',
+            '👾',
+            '👾🎨',
+                '-',
+               
                 'duplicate',
-                'comic',
-                'confetti'
+                '📖',
+                '🎉'
             ],
             eff
     )) {
-        throw new Error(localize('unsupported graphic effect') + ': "' + eff + '"');
+        throw new Error(localize('😹✨') + ': "' + eff + '"');
     }
-    if (eff === 'ghost') {
+    if (eff === '👻') {
         this.alpha = 1 - Math.min(Math.max(+value || 0, 0), 100) / 100;
     } else {
         this.graphicsValues[eff] = +value;
