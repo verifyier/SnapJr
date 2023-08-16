@@ -593,19 +593,20 @@ SyntaxElementMorph.prototype.labelParts = {
         type: 'input',
         tags: 'read-only static',
         menu: {
-            color: ['color'],
-            saturation: ['saturation'],
-            brightness : ['brightness'],
-            ghost: ['ghost'],
-            fisheye: ['fisheye'],
-            whirl: ['whirl'],
-            pixelate: ['pixelate'],
-            mosaic: ['mosaic'],
-            negative : ['negative']
+            '🌈':'🌈',
+            '🟥':'🟥',
+            '💡':'💡',
+            '👻':'👻',
+            '🐠👁':'🐠👁',
+            '🌀':'🌀',
+            '👾':'👾',
+            '👾🎨':'👾🎨',
+            'negative' : ['negative']
             // duplicate: ['duplicate'],
             // comic: ['comic'],
             // confetti: ['confetti']
         }
+    },
     },
     '%env': {
         type: 'input',
